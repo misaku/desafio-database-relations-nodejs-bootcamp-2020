@@ -11,16 +11,26 @@ import {
 import Customer from '@modules/customers/infra/typeorm/entities/Customer';
 import OrdersProducts from '@modules/orders/infra/typeorm/entities/OrdersProducts';
 
+@Entity('orders')
 class Order {
-  id: string;
+  @PrimaryGeneratedColumn('uuid')
+  public id: string;
 
-  customer: Customer;
+  @ManyToOne(() => Customer)
+  @JoinColumn({ name: 'customer_id' })
+  public customer: Customer;
 
-  order_products: OrdersProducts[];
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @OneToMany(type => OrdersProducts, productToOrder => productToOrder.order, {
+    cascade: true,
+  })
+  public order_products: OrdersProducts[];
 
-  created_at: Date;
+  @CreateDateColumn()
+  public created_at: Date;
 
-  updated_at: Date;
+  @UpdateDateColumn()
+  public updated_at: Date;
 }
 
 export default Order;

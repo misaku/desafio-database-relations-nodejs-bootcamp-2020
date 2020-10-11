@@ -12,14 +12,11 @@ class CustomersRepository implements ICustomersRepository {
   }
 
   public async create({ name, email }: ICreateCustomerDTO): Promise<Customer> {
-    const customer = this.ormRepository.create({
+    const customer = await this.ormRepository.create({
       name,
       email,
     });
-
-    await this.ormRepository.save(customer);
-
-    return customer;
+    return this.ormRepository.save(customer);
   }
 
   public async findById(id: string): Promise<Customer | undefined> {

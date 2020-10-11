@@ -1,0 +1,1 @@
+CREATE DATABASE gostack_desafio09_tests;
