@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Inicializando Docker
-    - run: docker-compose up -d
+      run: docker-compose up -d
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
