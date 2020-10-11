@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    -  name: Run docker-compose stack
+    - name: Run docker-compose stack
     - run: docker-compose -f docker-compose.yml up -d
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
